@@ -222,7 +222,6 @@
       const tx = from.dx * (1 - k), ty = from.dy * (1 - k) + off;
       const s = (from.s + (1 - from.s) * k) * (1 - pull * 0.18);
       big.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${s})`;
-      big.style.borderRadius = `${(1 - k) * 14 + 10}px`;
       const shown = Math.max(0, Math.min(1, k)) * (1 - pull * 0.75);
       scrim.style.opacity = shown;
       closeBtn.style.opacity = lb.querySelector(".lb__hint").style.opacity = Math.max(0, Math.min(1, k * 2 - 1)) * (1 - pull);
@@ -243,7 +242,7 @@
       measure(); dy.jump(0); p.jump(0);
       source.style.visibility = "hidden";
       if (reduce) { lb.classList.add("lb--fade"); requestAnimationFrame(() => { p.jump(1); lb.classList.add("lb--in"); }); }
-      else p.to(1);
+      else { const go = () => { if (source === img && !lb.hidden) p.to(1); }; (big.decode ? big.decode().then(go, go) : go()); }
       closeBtn.focus({ preventScroll: true });
     };
     const close = (velocity = 0) => {
