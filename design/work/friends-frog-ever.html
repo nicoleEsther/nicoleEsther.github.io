@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friends Frog-ever — Nicole Lee</title>
+<meta name="description" content="A Unity-style level editor I built for our team’s own C++ engine, so our two design students could build a 3D stealth game without writing code.">
+<meta name="theme-color" content="#F4EEE3">
+<meta property="og:title" content="Friends Frog-ever — Nicole Lee"><meta property="og:description" content="A Unity-style level editor I built for our team’s own C++ engine, so our two design students could build a 3D stealth game without writing code.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preload" href="../fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/great-vibes-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../index.html" aria-label="Nicole Esther Lee, home">Nicole Esther Lee</a>
+  <nav class="nav" aria-label="Main">
+    <a href="../index.html#work" aria-current="page">Work</a>
+    <ul class="nav__sub"><li><a href="../work/makan-kaki.html">Makan Kaki</a></li><li><a href="../work/tick.html">Tick</a></li><li><a href="../work/polished-by-pris.html">Polished by Pris</a></li><li><a href="../work/market-mayhem.html">Market Mayhem</a></li><li><a href="../work/nyx.html">Nyx</a></li><li><a href="../work/friends-frog-ever.html" aria-current="page">Friends Frog-ever</a></li><li><a href="../work/whispers-of-the-garden.html">Whispers of the Garden</a></li><li><a href="../work/night-at-the-museum.html">Night at the Museum</a></li></ul>
+    <a href="../about.html#top">About</a>
+    <ul class="nav__sub"><li><a href="../about.html#sheet">Skills</a></li><li><a href="../about.html#how">How I work</a></li><li><a href="../about.html#experience">Experience</a></li><li><a href="../about.html#fun">Off the clock</a></li></ul>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</div></header>
+<main id="main">
+<section class="cs-hero wrap">
+  <a class="back mono" href="../index.html#work">← All work</a>
+  <p class="mono">Game development · Tools &amp; UX</p>
+  <h1 class="signature reveal"><span class="draw">Friends Frog-ever</span></h1>
+  <p class="lede">Our team wrote its own C++ game engine. I built the level editor on top of it, modelled on Unity, so our two design students could build a 3D stealth game without writing engine code.</p>
+  <div class="meta"><div><span class='mono'>My role</span><b>Built the full level editor</b></div><div><span class='mono'>Team</span><b>Team F, with 2 design students as my users</b></div><div><span class='mono'>Tools</span><b>C++, custom engine, ImGui, Lua scripting</b></div><div><span class='mono'>Shipped</span><b>Windows and Android · Aug 2025 – Apr 2026</b></div></div>
+</section>
+<div class="wrap"><div class="cs-cover wipe figure"><img src="../assets/frog-editor-ui.webp" alt="The level editor with the Friends Frog-ever main menu open in the scene viewport, the entity hierarchy on the left and the component inspector on the right" width="1280" height="688"></div></div>
+<div class="wrap cs-grid">
+  <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><ol><li><a href="#problem">The problem</a></li><li><a href="#editor">The editor</a></li><li><a href="#decisions">Trade-offs</a></li><li><a href="#game">The game</a></li><li><a href="#learned">What I learned</a></li></ol></nav>
+  <article class="prose">
+<section id="problem"><p class="mono reveal">01 · The problem</p><h2 class="reveal">Two designers, and an engine only programmers could use.</h2>
+<p class="reveal">Friends Frog-ever (first called Ribbit Express) is a 3D stealth game: a little frog sneaks through a shipping yard, past patrolling robots, to fix its robot friend. We built it on our own C++ engine instead of Unity or Unreal.</p>
+<p class="reveal">That created a problem. Without an editor, every change to a level, like moving a crate, adjusting a light or wiring up a menu button, meant a programmer editing code and rebuilding. With <strong>two design students</strong> responsible for building the levels, the programmers would become the bottleneck for everything.</p>
+<div class="think reveal"><span class="mono">My thinking</span><p>My users weren’t players. They were my two teammates. They already knew how to build levels in Unity from class, so the fastest way to make them productive was to give them something that felt like Unity, not a new tool they’d have to learn mid-project.</p></div>
+</section>
+<section id="editor"><p class="mono reveal">02 · The editor</p><h2 class="reveal">Everything a designer needs, in one window.</h2>
+<p class="reveal">I built the whole editor: every panel, the tools inside them, and how they talk to the engine. Designers could build a scene, test it and fix it without leaving the window.</p>
+<figure class="figure reveal"><img src="../assets/frog-editor-scene.webp" alt="Editing the frog in the scene viewport with the move gizmo, with its components listed in the inspector" width="1280" height="688" loading="lazy"><figcaption>Selecting the frog: move, rotate and scale it in the viewport, and edit its position, rotation and scale exactly in the inspector.</figcaption></figure>
+<ul class="reveal">
+<li><strong>Scene viewport:</strong> play the scene in place, move, rotate and scale objects with gizmos, switch between world and local space, and jump between five camera views.</li>
+<li><strong>Hierarchy and inspector:</strong> every object in the scene as a tree, with parents and children. Select one to add or remove components and set its layer, just like Unity.</li>
+<li><strong>Resource panel and prefabs:</strong> browse models, textures, audio and scripts by folder, and reuse objects as prefabs.</li>
+<li><strong>Script editor:</strong> open and edit the game’s Lua scripts right next to the scene, or send them to VS Code.</li>
+<li><strong>Scene manager:</strong> create, load and save scenes such as the menu, settings, credits and cutscenes.</li>
+<li><strong>Debug panel:</strong> frame time, an undo and redo history for every edit, and a log console filtered by trace, info, warning and error.</li>
+<li><strong>Audio controls:</strong> a volume mixer for UI, music and sound effects, with 3D sound settings.</li>
+</ul>
+<figure class="figure reveal"><div class="video"><video controls playsinline muted preload="metadata" poster="../assets/frog-editor-poster.webp" width="1280" height="688"><source src="../assets/frog-editor.mp4" type="video/mp4">Your browser can’t play this video.</video></div><figcaption>Highlights from my editor walkthrough (1:13, no sound): moving the frog with gizmos, switching scenes, editing menu UI, adding components and writing scripts.</figcaption></figure>
+<figure class="figure reveal"><div class="pair"><img src="../assets/frog-editor-components.webp" alt="The game manager selected, with its components listed and an Add Component button" width="1280" height="688" loading="lazy"><img src="../assets/frog-editor-scripts.webp" alt="The script editor showing an AI chase script, with Lua files in the resource panel below" width="1280" height="688" loading="lazy"></div><figcaption>Left: components work like Unity’s, added and collapsed per object. Right: enemy AI scripts edited inside the editor, with every script file one click away.</figcaption></figure>
+</section>
+<section id="decisions"><p class="mono reveal">03 · Trade-offs</p><h2 class="reveal">The calls I made, and what they cost.</h2>
+<div class="decision reveal"><div class="decision__q"><span class="decision__label">Decision</span><p>What should the editor look and feel like?</p></div><ol class="decision__opts"><li class="opt opt--chosen"><span class="opt__mark" aria-hidden="true">✓</span><div><p class="opt__name">Mirror Unity: same panels, same words<span class="sr-only"> (chosen)</span></p><p class="opt__why">Hierarchy, inspector, components, prefabs. The designers already knew where everything was, so they could start building straight away. Costs: some Unity ideas didn’t map neatly onto our engine, so I had to bend the engine to fit.</p></div></li><li class="opt"><span class="opt__mark" aria-hidden="true">✕</span><div><p class="opt__name">Design our own layout around the engine<span class="sr-only"> (not chosen)</span></p><p class="opt__why">Could fit the engine more naturally, but the designers would be learning a new tool while also building levels.</p></div></li></ol></div>
+<div class="decision reveal"><div class="decision__q"><span class="decision__label">Decision</span><p>Where should designers edit scripts?</p></div><ol class="decision__opts"><li class="opt opt--chosen"><span class="opt__mark" aria-hidden="true">✓</span><div><p class="opt__name">Inside the editor, next to the scene<span class="sr-only"> (chosen)</span></p><p class="opt__why">Change an enemy’s behaviour and test it without switching windows. Costs: a second, simpler code editor to build and maintain, so I added a shortcut to VS Code for bigger edits.</p></div></li><li class="opt"><span class="opt__mark" aria-hidden="true">✕</span><div><p class="opt__name">Only in an external code editor<span class="sr-only"> (not chosen)</span></p><p class="opt__why">Less for me to build, but constant switching between tools slows down the try, test, fix loop that level design depends on.</p></div></li></ol></div>
+<div class="decision reveal"><div class="decision__q"><span class="decision__label">Decision</span><p>How safe should it be to experiment?</p></div><ol class="decision__opts"><li class="opt opt--chosen"><span class="opt__mark" aria-hidden="true">✓</span><div><p class="opt__name">Undo and redo for every edit<span class="sr-only"> (chosen)</span></p><p class="opt__why">Designers could try things without fear of breaking the level. Costs: every change had to go through one command system, which made each new tool more work to add.</p></div></li><li class="opt"><span class="opt__mark" aria-hidden="true">✕</span><div><p class="opt__name">Save often and hope<span class="sr-only"> (not chosen)</span></p><p class="opt__why">Simpler to build, but one bad drag could cost a designer their afternoon.</p></div></li></ol></div>
+</section>
+<section id="game"><p class="mono reveal">04 · The game</p><h2 class="reveal">What the designers built with it.</h2>
+<p class="reveal">The levels, menus and cutscenes in Friends Frog-ever were put together in the editor. The game shipped on <strong>Windows and Android</strong>, with touch controls on mobile.</p>
+<figure class="figure reveal"><div class="video"><video controls playsinline preload="metadata" poster="../assets/frog-trailer-poster.webp" width="1280" height="720"><source src="../assets/frog-trailer.mp4" type="video/mp4">Your browser can’t play this video.</video></div><figcaption>Gameplay highlights from the Windows build (0:41): the menu, sneaking past robots, getting detected and finishing a level.</figcaption></figure>
+<figure class="figure reveal"><div class="pair"><img src="../assets/frog-gameplay.webp" alt="The frog sneaking through a dark shipping yard, with a minimap and health bar" width="1689" height="1051" loading="lazy"><img src="../assets/frog-android.webp" alt="The Android version with on-screen touch controls" width="1584" height="720" loading="lazy"></div><figcaption>Left: Windows. Right: the Android build with touch controls.</figcaption></figure>
+<figure class="figure reveal"><img src="../assets/frog-team.webp" alt="Team F standing together outside on campus" width="1280" height="960" loading="lazy"><figcaption>Team F.</figcaption></figure>
+</section>
+<section id="learned"><p class="mono reveal">05 · What I learned</p><h2 class="reveal">Building tools is designing for people.</h2>
+<p class="reveal"><strong>Familiar beats clever.</strong> Copying a layout the designers already knew saved more time than any new idea would have.</p>
+<p class="reveal"><strong>Undo makes people brave.</strong> When mistakes are cheap, designers try more things, and the levels get better.</p>
+<p class="reveal"><strong>Sit with your users.</strong> The best requests came from watching the designers work, then turning what slowed them down into the next feature.</p>
+</section>
+  </article>
+</div>
+<div class="wrap"><a class="next" href="makan-kaki.html"><div><span class="mono">Next project</span><h3><span class="script">Makan Kaki</span></h3></div><span class="arrow" aria-hidden="true">→</span></a></div>
+<section class="contact wrap" id="contact">
+  <p class="mono reveal">Contact</p>
+  <h2 class="reveal">Let’s make something <span class="script">people</span> use.</h2>
+  <div class="contact__row reveal">
+    <a class="btn" href="mailto:nicoleestherlee@gmail.com">nicoleestherlee@gmail.com</a>
+    <button class="btn btn--ghost" type="button" data-copy="nicoleestherlee@gmail.com">Copy email</button>
+    <a class="btn btn--ghost" href="../resume/NicoleLee_Resume_Product_Design.pdf">Résumé (PDF)</a>
+    <span class="copied" role="status">Copied</span>
+  </div>
+  <p class="signoff reveal" aria-hidden="true"><span class="draw">say hello</span></p>
+  <div class="foot mono"><span>© <span data-year>2026</span> Nicole Lee · Singapore</span><span>Designed in Figma, built by hand</span></div>
+</section>
+
+</main>
+
+<script src="../js/main.js" defer></script>
+</body></html>
