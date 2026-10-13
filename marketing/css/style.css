@@ -1455,3 +1455,9 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .social-embed blockquote { display: block; }
 .social-embeds .social-embed__fallback { min-height: 420px; height: 100%; }
 .prose .social-embeds section, .social-embeds section { margin: 0 !important; }
+
+.social-embed { flex-direction: column; align-items: center; gap: 12px; }
+.social-embed__frame { display: block; width: 100%; max-width: 340px; border: 0; border-radius: 12px; background: var(--paper, #F4EEE3); }
+.social-embed__frame--ig { height: 600px; }
+.social-embed__frame--tt { height: 740px; }
+.social-embed__link { font-size: 14px; color: var(--ink-2); }
