@@ -1424,3 +1424,19 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .print--museum .print__note span:nth-child(2) { font-size: 14px; line-height: 1.45; max-width: 30ch; text-wrap: balance; }
 .print--museum .print__go { font-size: 20px; line-height: 1.15; text-wrap: balance; }
 @media (hover: hover) and (pointer: fine) { .print--museum:hover .print__go { text-decoration: none; } }
+
+/* experience & education split */
+.timeline__label { margin: 0 0 12px; color: var(--ink-3); }
+.timeline + .timeline__label { margin-top: 48px; }
+
+/* cursive script instead of the handwritten font */
+:root { --f-hand: var(--f-script); }
+.note h3 { font-weight: 400 !important; font-size: 44px !important; line-height: 1.05 !important; }
+.quest__head h3 { font-weight: 400 !important; font-size: 52px !important; line-height: 1.05 !important; }
+.print figcaption, .clip-card figcaption, .page figcaption { font-weight: 400; font-size: 28px; line-height: 1.15; }
+.page figcaption { font-size: 25px; }
+.print__badge { font-weight: 400; font-size: 23px; }
+.print__note span:first-child { font-weight: 400; font-size: 40px; }
+.print__go { font-weight: 400; font-size: 30px; }
+.print--museum .print__note span:first-child { font-size: 36px; }
+.print--museum .print__go { font-size: 27px; }
