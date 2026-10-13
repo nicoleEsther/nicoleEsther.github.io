@@ -1440,3 +1440,18 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .print__go { font-weight: 400; font-size: 30px; }
 .print--museum .print__note span:first-child { font-size: 36px; }
 .print--museum .print__go { font-size: 27px; }
+
+/* Instagram + TikTok embeds on the Kiko's page */
+.social-embeds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); align-items: start; padding: clamp(16px, 3vw, 32px); background: var(--card, #FBF7EF); border: 1px solid var(--line); border-radius: 14px; }
+@media (max-width: 640px) { .social-embeds { grid-template-columns: 1fr; } }
+.social-embed { min-width: 0; display: flex; justify-content: center; }
+.social-embed blockquote, .social-embed iframe { margin: 0 !important; width: 100% !important; min-width: 0 !important; max-width: 340px !important; }
+.social-embed .instagram-media, .social-embed .tiktok-embed { border: 0 !important; padding: 0 !important; background: transparent !important; }
+.social-embed__fallback { display: grid; gap: 10px; place-items: center; text-align: center; min-height: 420px; padding: 24px; border: 1px dashed var(--line); border-radius: 12px; background: var(--paper, #F4EEE3); color: var(--ink); text-decoration: none; }
+.social-embed__fallback b { font-family: var(--f-display); font-size: 20px; font-weight: 400; }
+.social-embed__fallback span:last-child { color: var(--ink-2); font-size: 14px; }
+@media (hover: hover) and (pointer: fine) { .social-embed__fallback:hover { border-style: solid; } }
+.social-embed blockquote > *, .social-embed section { margin: 0 !important; padding: 0 !important; }
+.social-embed blockquote { display: block; }
+.social-embeds .social-embed__fallback { min-height: 420px; height: 100%; }
+.prose .social-embeds section, .social-embeds section { margin: 0 !important; }
