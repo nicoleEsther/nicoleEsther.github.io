@@ -1387,3 +1387,29 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 /* perf: the viewer's scrim is nearly opaque, so the full-screen blur was invisible but expensive */
 .lb__scrim { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; will-change: opacity; }
 .lb__img { border-radius: 12px; }
+
+/* Even spacing in multi-image cards: same gap between images and around the edges, everything top-aligned, card hugs its content */
+.card__media, .cs-cover { container-type: inline-size; }
+.card__media:has(.trio, .duo, .flowers-tile) { aspect-ratio: auto !important; }
+.card__media:has(.trio, .duo, .flowers-tile) .clip { position: relative !important; inset: auto !important; }
+.trio, .tile .duo, .flowers-tile, .cs-cover .trio {
+  --gap: 6cqi;
+  position: relative !important; inset: auto !important; aspect-ratio: auto !important;
+  display: flex !important; flex-direction: row !important; align-items: flex-start !important; justify-content: center !important;
+  gap: var(--gap) !important; padding: var(--gap) !important; }
+.tile .trio, .tile .duo, .tile .flowers-tile { --gap: 7cqi; }
+.trio img, .tile .duo img, .flowers-tile img {
+  flex: 1 1 0 !important; min-width: 0 !important; width: auto !important; height: auto !important;
+  margin: 0 !important; transform: none !important; position: static !important; }
+.tile .duo img { aspect-ratio: 390 / 1015; object-fit: cover; object-position: top; }
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover .card__img--lift, .card:hover .card__img--lift { transform: translateY(-6px) !important; }
+}
+@media (prefers-reduced-motion: reduce) { .tile:hover .card__img--lift, .card:hover .card__img--lift { transform: none !important; } }
+.flowers img:nth-child(1), .flowers img:nth-child(2) { transform: none; }
+.tile .trio.trio--fill { padding: var(--gap) !important; gap: var(--gap) !important; align-items: flex-start !important; }
+.tile .trio.trio--fill img { width: auto !important; }
+/* Image grids: the gap between images matches the padding around them; four images sit in one row */
+.phones, .listings { --pad: clamp(16px, 2.6vw, 32px); padding: var(--pad) !important; gap: var(--pad) !important; }
+.phones:has(> :nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 700px) { .phones:has(> :nth-child(4):last-child) { grid-template-columns: 1fr 1fr; } }

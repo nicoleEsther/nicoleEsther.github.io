@@ -361,3 +361,43 @@
   head.addEventListener("pointerenter", () => clearTimeout(t));
   head.addEventListener("click", (e) => { if (e.target.closest("a")) set(false); });
 })();
+
+/* Balance two-column card grids. Multi-image cards hug their images with even spacing, so their height is fixed by their width.
+   To make both columns end level without cropping, the columns get slightly different widths (kept between 38% and 62%),
+   then any single-image card absorbs the last few pixels (it crops cleanly). */
+(() => {
+  const isMulti = m => m.querySelector(".trio, .duo, .flowers-tile");
+  const medias = col => [...col.querySelectorAll(".card__media")];
+  const singles = col => medias(col).filter(m => !isMulti(m));
+  // offset* ignores the reveal transform, so measurements are stable mid-animation
+  const top = col => col.firstElementChild ? col.firstElementChild.offsetTop : 0;
+  const bottom = col => col.lastElementChild ? col.lastElementChild.offsetTop + col.lastElementChild.offsetHeight : 0;
+  const reset = m => { if (m.dataset.bal !== undefined) { m.style.height = ""; m.style.aspectRatio = m.dataset.bal; delete m.dataset.bal; } };
+  const set = (m, h) => { if (m.dataset.bal === undefined) m.dataset.bal = m.style.aspectRatio || ""; m.style.aspectRatio = "auto"; m.style.height = Math.round(h) + "px"; };
+  function balance() {
+    document.querySelectorAll(".tiles").forEach(t => {
+      const cols = [...t.querySelectorAll(":scope > .tiles__col")];
+      cols.forEach(c => { c.style.flex = ""; medias(c).forEach(reset); });
+      if (cols.length !== 2) return;
+      if (Math.abs(cols[0].getBoundingClientRect().left - cols[1].getBoundingClientRect().left) < 2) return; // stacked on mobile
+      const w = cols.map(c => c.offsetWidth), W = w[0] + w[1];
+      const H = cols.map(c => bottom(c) - top(c));
+      const M = cols.map(c => medias(c).reduce((s, m) => s + m.offsetHeight, 0));
+      const a = M.map((m, i) => m / w[i]), k = H.map((h, i) => h - M[i]);
+      let w0 = (a[1] * W + k[1] - k[0]) / (a[0] + a[1]);
+      w0 = Math.max(W * 0.38, Math.min(W * 0.62, w0));
+      cols[0].style.flex = `${w0 / W} 1 0`; cols[1].style.flex = `${1 - w0 / W} 1 0`;
+      const diff = bottom(cols[0]) - bottom(cols[1]);
+      if (Math.abs(diff) < 2) return;
+      const tall = diff > 0 ? cols[0] : cols[1], short = diff > 0 ? cols[1] : cols[0];
+      const grow = singles(short).pop(), shrink = singles(tall).pop();
+      if (grow) { set(grow, grow.offsetHeight + Math.abs(diff)); return; }
+      if (shrink) { const h = shrink.offsetHeight - Math.abs(diff); if (h >= 160) set(shrink, h); }
+    });
+  }
+  let raf = 0; const queue = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(balance); };
+  addEventListener("load", queue); addEventListener("resize", queue);
+  document.querySelectorAll(".tiles img").forEach(i => { if (!i.complete) i.addEventListener("load", queue, { once: true }); });
+  if (document.fonts) document.fonts.ready.then(queue);
+  queue();
+})();
