@@ -1301,8 +1301,7 @@ body {
 .pages--2 .page { padding: 10px 10px 26px; }
 .pages--2 .page:nth-child(even) { margin-top: 32px; }
 .pages--2 .page img { aspect-ratio: 4 / 5; }
-@media (min-width: 900px) { .prints > .print:last-child { grid-column: span 2; } }
-@media (min-width: 900px) { .prints { align-items: start; } .prints > .print:last-child img { aspect-ratio: 31 / 10; object-position: 50% 62%; } }
+@media (min-width: 900px) { .prints { align-items: start; } }
 @media (min-width: 900px) { .prints > .print--tall { align-self: stretch; } }
 
 /* perf: paper layer painted once on its own GPU layer instead of re-rasterising the noise on every scroll and lightbox frame */
@@ -1347,3 +1346,11 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 /* project groups in the side menu */
 .nav__sub .nav__grp { font: 400 10.5px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); opacity: .8; padding: 10px 0 4px; }
 .nav__sub .nav__grp:first-child { padding-top: 2px; }
+
+/* museum fun-fact card in the camera roll */
+.print--museum { align-self: stretch; min-height: 0; cursor: default; }
+.print--museum .print__note { gap: 8px; padding: 10px 12px; }
+.print--museum .print__note span:first-child { font-size: 26px; }
+.print--museum .print__note span:nth-child(2) { font-size: 14px; line-height: 1.45; max-width: 30ch; text-wrap: balance; }
+.print--museum .print__go { font-size: 20px; line-height: 1.15; text-wrap: balance; }
+@media (hover: hover) and (pointer: fine) { .print--museum:hover .print__go { text-decoration: none; } }

@@ -1360,8 +1360,7 @@ body {
 .pages--2 .page { padding: 10px 10px 26px; }
 .pages--2 .page:nth-child(even) { margin-top: 32px; }
 .pages--2 .page img { aspect-ratio: 4 / 5; }
-@media (min-width: 900px) { .prints > .print:last-child { grid-column: span 2; } }
-@media (min-width: 900px) { .prints { align-items: start; } .prints > .print:last-child img { aspect-ratio: 31 / 10; object-position: 50% 62%; } }
+@media (min-width: 900px) { .prints { align-items: start; } }
 @media (min-width: 900px) { .prints > .print--tall { align-self: stretch; } }
 /* ---------- rosvpvtals ---------- */
 .ros-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -1417,3 +1416,11 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .decision__label { display: block; line-height: 1.2; }
 .sticky { padding-top: 24px; padding-bottom: 20px; }
 .opt { padding-top: 12px; padding-bottom: 16px; }
+
+/* museum fun-fact card in the camera roll */
+.print--museum { align-self: stretch; min-height: 0; cursor: default; }
+.print--museum .print__note { gap: 8px; padding: 10px 12px; }
+.print--museum .print__note span:first-child { font-size: 26px; }
+.print--museum .print__note span:nth-child(2) { font-size: 14px; line-height: 1.45; max-width: 30ch; text-wrap: balance; }
+.print--museum .print__go { font-size: 20px; line-height: 1.15; text-wrap: balance; }
+@media (hover: hover) and (pointer: fine) { .print--museum:hover .print__go { text-decoration: none; } }
