@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chroma — Nicole Lee</title>
+<meta name="description" content="Hired as physics lead on an 8-person team, I ended up also building the graphics, level editor and particle system, and keeping the team on track.">
+<meta name="theme-color" content="#F4EEE3">
+<meta property="og:title" content="Chroma — Nicole Lee"><meta property="og:description" content="Hired as physics lead on an 8-person team, I ended up also building the graphics, level editor and particle system, and keeping the team on track.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preload" href="../fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/great-vibes-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../index.html" aria-label="Nicole Esther Lee, home">Nicole Esther Lee</a>
+  <nav class="nav" aria-label="Main">
+    <a href="../index.html#work" aria-current="page">Work</a>
+    <ul class="nav__sub"><li class="nav__grp">Product &amp; UI/UX</li><li><a href="../work/makan-kaki.html">Makan Kaki</a></li><li><a href="../work/tick.html">Tick</a></li><li><a href="../work/polished-by-pris.html">Polished by Pris</a></li><li class="nav__grp">Game design</li><li><a href="../work/market-mayhem.html">Market Mayhem</a></li><li><a href="../work/nyx.html">Nyx</a></li><li><a href="../work/friends-frog-ever.html">Friends Frog-ever</a></li><li><a href="../work/chroma.html" aria-current="page">Chroma</a></li><li><a href="../work/whispers-of-the-garden.html">Whispers of the Garden</a></li><li><a href="../work/night-at-the-museum.html">Night at the Museum</a></li></ul>
+    <a href="../about.html#top">About</a>
+    <ul class="nav__sub"><li><a href="../about.html#sheet">Skills</a></li><li><a href="../about.html#how">How I work</a></li><li><a href="../about.html#experience">Experience</a></li><li><a href="../about.html#fun">Off the clock</a></li></ul>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</div></header>
+<main id="main">
+<section class="cs-hero wrap">
+  <a class="back mono" href="../index.html#work">← All work</a>
+  <p class="mono">Game development · Physics, tools &amp; team lead</p>
+  <h1 class="signature reveal"><span class="draw">Chroma</span></h1>
+  <p class="lede">A 2D puzzle platformer where you shoot paint to change what platforms do. I joined as physics lead. When parts of the project stalled, I also built the graphics, the level editor and the particle system, and ended up running the team.</p>
+  <div class="meta"><div><span class='mono'>My role</span><b>Physics lead, later credited as project manager</b></div><div><span class='mono'>Team</span><b>Elysium Studios: 6 programmers, a designer and an artist</b></div><div><span class='mono'>Tools</span><b>C++, our own 2D engine</b></div><div><span class='mono'>Shipped</span><b>Aug 2024 – Apr 2025</b></div></div>
+</section>
+<div class="wrap"><div class="cs-cover wipe figure"><img src="../assets/chroma-title.webp" alt="Chroma title screen: a paint-splash logo over pastel clouds, with Start, Settings and Quit buttons" width="1079" height="607"></div></div>
+<div class="wrap cs-grid">
+  <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><ol><li><a href="#game">The game</a></li><li><a href="#physics">The physics</a></li><li><a href="#more">Picking up the slack</a></li><li><a href="#decisions">Trade-offs</a></li><li><a href="#learned">What I learned</a></li></ol></nav>
+  <article class="prose">
+<section id="game"><p class="mono reveal">01 · The game</p><h2 class="reveal">Colour is the puzzle.</h2>
+<p class="reveal">You play an artist trapped in a dreamscape. Shoot a colour at a slimy paint platform and it changes how it behaves. Collect 6 of the 10 light bulbs in a level to unlock the exit.</p>
+<figure class="figure reveal"><div class="video"><video controls playsinline preload="metadata" poster="../assets/chroma-showcase-poster.webp" width="1280" height="716"><source src="../assets/chroma-showcase.mp4" type="video/mp4">Your browser can’t play this video.</video></div><figcaption>Gameplay showcase (0:47).</figcaption></figure>
+</section>
+<section id="physics"><p class="mono reveal">02 · The physics</p><h2 class="reveal">Rules simple enough for a tutorial page.</h2>
+<p class="reveal">As physics lead, I owned how the platforms move and react. Every puzzle in the game rests on three rules:</p>
+<ul class="reveal">
+<li><strong>Same colours stick.</strong> Two yellow platforms that touch join together. Different colours don’t.</li>
+<li><strong>Gravity platforms fall</strong> when you click them, and keep falling until they land on a platform of the same colour.</li>
+<li><strong>Moving platforms</strong> start and stop when you click them, like a lift.</li>
+</ul>
+<figure class="figure reveal"><img src="../assets/chroma-tutorials.webp" alt="Five tutorial cards: platform colour rules, gravity platforms, moving platforms, collectibles, and a rules recap with a Let’s Go button" width="1030" height="615" loading="lazy"><figcaption>The in-game tutorial cards. If a rule couldn’t fit on one card, it was too complicated.</figcaption></figure>
+<div class="think reveal"><span class="mono">My thinking</span><p>Players never see physics code, only whether it feels fair. A platform that stuck to the wrong colour even once made players stop trusting the rules, so getting the edge cases right mattered more than adding new platform types.</p></div>
+<figure class="figure reveal"><div class="pair"><img src="../assets/chroma-shoot.webp" alt="The artist next to a red platform and a yellow block stuck to a ledge" width="1280" height="720" loading="lazy"><img src="../assets/chroma-slime.webp" alt="Yellow platforms stuck together as one shape, with a glowing bulb nearby" width="1280" height="720" loading="lazy"></div><figcaption>Left: shooting paint changes a platform’s colour. Right: same-coloured platforms join into one shape.</figcaption></figure>
+</section>
+<section id="more"><p class="mono reveal">03 · Picking up the slack</p><h2 class="reveal">From one system to most of the engine.</h2>
+<p class="reveal">Partway through, some tasks weren’t getting done. Rather than let the game slip, I took them on:</p>
+<ul class="reveal">
+<li><strong>Graphics:</strong> how sprites, lighting and backgrounds are drawn on screen.</li>
+<li><strong>Level editor:</strong> so our designer could lay out levels without asking a programmer.</li>
+<li><strong>Particle system:</strong> the paint splashes, dust and sparkles that make the game feel alive.</li>
+</ul>
+<p class="reveal">I also started organising everyone’s tasks, turning what our designer needed into work for the programmers, fixing bugs and cleaning up tangled code so new features stopped breaking old ones. By the end, my professor credited me as the project manager.</p>
+<figure class="figure reveal"><div class="pair"><img src="../assets/chroma-intro.webp" alt="Intro cutscene in greyscale: the artist sketching at her drawing tablet" width="681" height="385" loading="lazy"><img src="../assets/chroma-ending.webp" alt="Ending cutscene in full colour: the artist painting again, wearing her red bow" width="682" height="385" loading="lazy"></div><figcaption>The intro and ending cutscenes, drawn by our artist. The colour coming back is the story.</figcaption></figure>
+</section>
+<section id="decisions"><p class="mono reveal">04 · Trade-offs</p><h2 class="reveal">The calls I made, and what they cost.</h2>
+<div class="decision reveal"><div class="decision__q"><span class="decision__label">Decision</span><p>Parts of the game weren’t being built. What should I do?</p></div><ol class="decision__opts"><li class="opt opt--chosen"><span class="opt__mark" aria-hidden="true">✓</span><div><p class="opt__name">Build them myself<span class="sr-only"> (chosen)</span></p><p class="opt__why">The graphics, level editor and particle system got done, and the game shipped complete. Costs: far less time to polish my own physics work, and a lot less sleep.</p></div></li><li class="opt"><span class="opt__mark" aria-hidden="true">✕</span><div><p class="opt__name">Wait and escalate<span class="sr-only"> (not chosen)</span></p><p class="opt__why">Fairer on paper, but the deadline wouldn’t move, and the whole team’s grade depended on a working game.</p></div></li></ol></div>
+<div class="decision reveal"><div class="decision__q"><span class="decision__label">Decision</span><p>How should the team keep track of work?</p></div><ol class="decision__opts"><li class="opt opt--chosen"><span class="opt__mark" aria-hidden="true">✓</span><div><p class="opt__name">One shared task list, with me as the go-between<span class="sr-only"> (chosen)</span></p><p class="opt__why">Everyone could see what was left and who owned it, and our designer had one person to ask instead of six. Costs: coordinating took time I could have spent coding.</p></div></li><li class="opt"><span class="opt__mark" aria-hidden="true">✕</span><div><p class="opt__name">Let each person manage their own tasks<span class="sr-only"> (not chosen)</span></p><p class="opt__why">Less overhead, but that’s how work had been falling through the cracks.</p></div></li></ol></div>
+<div class="decision reveal"><div class="decision__q"><span class="decision__label">Decision</span><p>New features kept breaking old ones. Fix or push on?</p></div><ol class="decision__opts"><li class="opt opt--chosen"><span class="opt__mark" aria-hidden="true">✓</span><div><p class="opt__name">Clean up the messiest code first<span class="sr-only"> (chosen)</span></p><p class="opt__why">Untangling it made each later feature faster and safer to add. Costs: a few days with nothing new to show.</p></div></li><li class="opt"><span class="opt__mark" aria-hidden="true">✕</span><div><p class="opt__name">Keep adding features on top<span class="sr-only"> (not chosen)</span></p><p class="opt__why">More progress early, but every bug fix risked creating two more.</p></div></li></ol></div>
+</section>
+<section id="learned"><p class="mono reveal">05 · What I learned</p><h2 class="reveal">A team project is a people project.</h2>
+<p class="reveal"><strong>Someone has to hold the whole picture.</strong> Most of our problems weren’t code. They were tasks nobody owned and needs nobody passed on.</p>
+<p class="reveal"><strong>Track assets in one place.</strong> In our post-mortem, we agreed a shared sheet of every asset, and what’s in the game, would have saved hours of “is this done?”</p>
+<p class="reveal"><strong>Pull before you push.</strong> Most of our merge conflicts came from out-of-date branches. A team habit fixes that better than any tool.</p>
+<figure class="figure reveal"><img src="../assets/chroma-team.webp" alt="Elysium Studios at a table on campus, everyone wearing matching red bows" width="1280" height="960" loading="lazy"><figcaption>Elysium Studios, in matching red bows like our main character’s.</figcaption></figure>
+</section>
+  </article>
+</div>
+<div class="wrap"><a class="next" href="makan-kaki.html"><div><span class="mono">Next project</span><h3><span class="script">Makan Kaki</span></h3></div><span class="arrow" aria-hidden="true">→</span></a></div>
+<section class="contact wrap" id="contact">
+  <p class="mono reveal">Contact</p>
+  <h2 class="reveal">Let’s make something <span class="script">people</span> use.</h2>
+  <div class="contact__row reveal">
+    <a class="btn" href="mailto:nicoleestherlee@gmail.com">nicoleestherlee@gmail.com</a>
+    <button class="btn btn--ghost" type="button" data-copy="nicoleestherlee@gmail.com">Copy email</button>
+    <a class="btn btn--ghost" href="../resume/NicoleLee_Resume_Product_Design.pdf">Résumé (PDF)</a>
+    <span class="copied" role="status">Copied</span>
+  </div>
+  <p class="signoff reveal" aria-hidden="true"><span class="draw">say hello</span></p>
+  <div class="foot mono"><span>© <span data-year>2026</span> Nicole Lee · Singapore</span><span>Designed in Figma, built by hand</span></div>
+</section>
+
+</main>
+
+<script src="../js/main.js" defer></script>
+</body></html>
