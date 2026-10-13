@@ -1337,3 +1337,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .phones, .listings { --pad: clamp(16px, 2.6vw, 32px); padding: var(--pad) !important; gap: var(--pad) !important; }
 .phones:has(> :nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 700px) { .phones:has(> :nth-child(4):last-child) { grid-template-columns: 1fr 1fr; } }
+/* Even padding: the small label above each decision sat in a tall line box, adding ~6px above the card's content */
+.decision__label { display: block; line-height: 1.2; }
+.sticky { padding-top: 24px; padding-bottom: 20px; }
+.opt { padding-top: 12px; padding-bottom: 16px; }
