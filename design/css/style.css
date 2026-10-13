@@ -1344,3 +1344,6 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .think { margin: 22px 0; padding: 16px 20px 16px 22px; border-left: 2px dashed rgba(26,23,18,.35); background: rgba(255,252,246,.5); border-radius: 0 6px 6px 0; }
 .think .mono { color: var(--ink-3); }
 .think p { margin: 6px 0 0 !important; color: var(--ink) !important; font: italic 400 16.5px/1.65 var(--f-serif); }
+/* project groups in the side menu */
+.nav__sub .nav__grp { font: 400 10.5px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); opacity: .8; padding: 10px 0 4px; }
+.nav__sub .nav__grp:first-child { padding-top: 2px; }
