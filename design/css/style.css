@@ -1404,3 +1404,7 @@ h1 .script, h2 .script, h3 .script, .hero__title .script, .jack__some { color: v
 main p strong, main li strong, main p em, main li em, .prose p strong, .prose li strong, .prose p em, .prose li em, .taps strong, .lede em, .lede strong { color: var(--pink); font-weight: 600; }
 main p em, .prose p em, .prose li em, .lede em { font-weight: inherit; }
 .sticky strong, .sticky em, .btn strong, .meta strong, .print strong, .print em { color: inherit; }
+
+/* Next-project cards: lighter card, brown type (Oct 2026) */
+.next { background: #FFFDFA !important; border: 1px solid var(--brown-soft) !important; box-shadow: 0 1px 2px rgba(107,74,58,.06), 0 18px 36px -24px rgba(107,74,58,.28) !important; }
+.next, .next .mono, .next h3, .next h3 .script, .next .arrow { color: var(--brown) !important; }
