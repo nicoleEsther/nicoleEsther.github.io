@@ -1397,3 +1397,10 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 ::selection { background: var(--pink-soft); color: var(--ink); }
 .script, .signature, .cs-hero h1.signature, .signoff, .intro__name,
 .reflect__col h3, .changes h3, .jack__some, .hmw__q em { color: var(--pink); }
+
+/* Headings brown, key words pink (Oct 2026) */
+h1, h2, h3, h4, .hero__title, h1.signature, .cs-hero h1.signature, .intro__name { color: var(--brown); }
+h1 .script, h2 .script, h3 .script, .hero__title .script, .jack__some { color: var(--pink); }
+main p strong, main li strong, main p em, main li em, .prose p strong, .prose li strong, .prose p em, .prose li em, .taps strong, .lede em, .lede strong { color: var(--pink); font-weight: 600; }
+main p em, .prose p em, .prose li em, .lede em { font-weight: inherit; }
+.sticky strong, .sticky em, .btn strong, .meta strong, .print strong, .print em { color: inherit; }
