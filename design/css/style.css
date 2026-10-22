@@ -1425,3 +1425,14 @@ main p em, .prose p em, .prose li em, .lede em { font-weight: inherit; }
 html { background-color: #FFFFFF; }
 body::before { background: #FFFFFF !important; }
 .next, .kd__list li { background: #FFFFFF !important; }
+
+/* Body text in Alegreya, a free Calluna-like book serif (Oct 2026) */
+@font-face { font-family: "Alegreya"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/alegreya-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Alegreya"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/alegreya-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Alegreya"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/alegreya-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Alegreya"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/alegreya-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Alegreya"; font-style: italic; font-weight: 600; font-display: swap; src: url("../fonts/alegreya-latin-600-italic.woff2") format("woff2"); }
+:root { --f-text: "Alegreya", "Calluna", Georgia, serif; }
+body, p, li, dd, blockquote:not(.sticky__prompt), figcaption, .lede { font-family: var(--f-text); }
+body { font-size: 1.1875rem; }
+.nav li, .nav a, .nav__sub li, .toc li, .toc a, .btn, .tag { font-family: var(--f-body); }
