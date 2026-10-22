@@ -1488,3 +1488,12 @@ main p em, .prose p em, .prose li em, .lede em { font-weight: inherit; }
 .next, .next .mono, .next h3, .next h3 .script, .next .arrow { color: var(--brown) !important; }
 
 .hero__title, .hero--index .hero__title { color: var(--brown) !important; }
+
+/* Key decisions strip (Oct 2026) */
+.kd { margin-top: clamp(32px, 5vw, 56px); }
+.kd > .mono { margin: 0 0 14px; }
+.kd__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); counter-reset: kd; }
+.kd__list li { counter-increment: kd; display: grid; gap: 6px; align-content: start; padding: 18px 20px; border: 1px solid var(--brown-soft); border-radius: 14px; background: #FFFDFA; }
+.kd__list li::before { content: "0" counter(kd); font: 500 11px/1 var(--f-mono); letter-spacing: .08em; color: var(--brown); }
+.kd__list b { font: 600 16px/1.35 var(--f-body); color: var(--ink); }
+.kd__list span { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
