@@ -1436,3 +1436,13 @@ body::before { background: #FFFFFF !important; }
 body, p, li, dd, blockquote:not(.sticky__prompt), figcaption, .lede { font-family: var(--f-text); }
 body { font-size: 1.1875rem; }
 .nav li, .nav a, .nav__sub li, .toc li, .toc a, .btn, .tag { font-family: var(--f-body); }
+
+/* Standardised type: Libre Baskerville headings, Alegreya for everything else, Pinyon Script accents (Oct 2026) */
+:root { --f-body: var(--f-text); --f-mono: var(--f-text); --f-display: var(--f-serif); }
+.brand, .nav li, .nav a, .nav__sub li, .toc li, .toc a, .btn, .tag, .card__title, .tile__sep, .side-toggle__label, .lb__hint, .arrow, .sel__tab { font-family: var(--f-text) !important; }
+.mono, .nav__grp, .figure figcaption, .decision__label, .step__n, .sticky__k, .user__k, .hmw__k, .rules__k, .timeline__label { font-family: var(--f-text) !important; letter-spacing: .07em; }
+.mono { font-size: 13px; }
+.card__title { font-weight: 600; }
+code { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace !important; }
+.sticky__prompt { font-family: var(--f-text) !important; font-style: italic; font-size: 15px !important; }
+.card__title, .tile__meta, .tile__sep { font-size: 17px; }
